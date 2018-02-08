@@ -4,7 +4,7 @@ title = "Scott Guymer"
 theme = "hugo-future-imperfect"
 preserveTaxonomyNames = true
 paginate = 3
-# disqusShortname = "shortname"
+disqusShortname = ""
 googleAnalytics = "UA-113812052-1"
 pluralizeListTitles = false
 
@@ -62,7 +62,7 @@ pluralizeListTitles = false
   staticman = true
   # Sets the location for Staticman to connect to
   username  = "ScottGuymer"
-  repo      = "scottguymer.github.io"
+  repo      = "scottguymer"
   branch    = "master"
 
   [params.staticman.recaptcha]
