@@ -12,12 +12,11 @@ title = "How I created this blog"
 type = "post"
 
 +++
-# How I set up this blog
 
-HUGO
+## HUGO
 
-GitHGub Pages
+## GitHGub Pages
 
-Forestry.io
+## Forestry.io
 
-Cloudflare
+## Cloudflare
