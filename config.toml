@@ -4,7 +4,7 @@ title = "Scott Guymer"
 theme = "hugo-future-imperfect"
 preserveTaxonomyNames = true
 paginate = 3
-disqusShortname = ""
+disqusShortname = "scottguymer"
 googleAnalytics = "UA-113812052-1"
 pluralizeListTitles = false
 
@@ -59,7 +59,7 @@ pluralizeListTitles = false
 # prefer to use. See Staticman.yml for additional settings.
 [params.staticman]
   # Sets Statiman to be active
-  staticman = true
+  staticman = false
   # Sets the location for Staticman to connect to
   username  = "ScottGuymer"
   repo      = "scottguymer"
