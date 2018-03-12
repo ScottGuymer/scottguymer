@@ -1,6 +1,6 @@
 +++
-author = ""
-categories = [""]
+author = "Scott Guymer"
+categories = ["c#", "linq"]
 date = "2018-03-12T10:53:21+00:00"
 description = ""
 draft = true
