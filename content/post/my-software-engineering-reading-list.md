@@ -1,9 +1,8 @@
 +++
 author = "Scott Guymer"
-date = "2018-03-09T17:54:40+00:00"
+date = "2018-03-09T17:54:40Z"
 tags = ["Software Engineering", "Reading"]
 title = "My Software Engineering Reading List"
-type = "post"
 
 +++
 ## Software Design Patterns

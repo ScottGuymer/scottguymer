@@ -1,11 +1,9 @@
 +++
-draft = true
 author = "Scott Guymer"
+date = "2018-02-08T00:00:00Z"
+draft = true
 tags = ["debugging"]
-date = "2018-02-08"
 title = "Caputuring All Traffic in Fiddler"
-type = "post"
 
 +++
-
 ## getting all traffic

@@ -1,9 +1,8 @@
 +++
 author = "Scott Guymer"
-date = "2018-03-12T10:53:21+00:00"
+date = "2018-03-12T10:53:21Z"
 tags = ["c#", "linq"]
 title = "Unit testing complex LINQ statements"
-type = "post"
 
 +++
 LINQ is amongst the greatest features of c# and when it was released people instantly took to using it. It forms the basis of may ORMs and other object manipulation tools. It can form a great abstraction when loading and manipulating data.

@@ -1,80 +1,33 @@
-# Tranquilpeak
-# Version : 0.4.3-BETA
-# Author : Thibaud Leprêtre
-
-# I STRONGLY recommend you to use a CDN to speed up loading of pages.
-# There is many free CDN like Cloudinary or you can also use indirectly
-# by using services like Google Photos.
-
-# If you want to store images yourself, please read this guidelines:
-# For users, if you only use this theme, put your images directly in `source/assets/images` folder
-# But if you want to add local images, you can put your images directly in `source/assets/images` folder
-# For developpers, if you modify this theme, put your images in `source/images` folder and
-# use grunt task `build` to synchronize assets
-
-baseURL = "https://www.scottguymer.co.uk/"
-languageCode = "en-us"
-defaultContentLanguage = "en-us"
-title = "Scott Guymer"
-theme = "hugo-nuo"
-disqusShortname = "scottguymer"
-
-enableRobotsTXT = true
 PygmentsCodeFences = true
+baseURL = "https://www.scottguymer.co.uk/"
 canonifyurls = true
-
-# Google Analytics UA number
-googleAnalytics = "UA-113812052-1"
-
-# Copyright of your post
 copyright = "© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce."
-
-# Initial site menu, you can extend menu with content.
+defaultContentLanguage = "en-us"
+disqusShortname = "scottguymer"
+enableRobotsTXT = true
+googleAnalytics = "UA-113812052-1"
+languageCode = "en-us"
+theme = "hugo-nuo"
+title = "Scott Guymer"
 [[menu.main]]
-  name = "Home"
-  weight = 10
-  identifier = "home"
-  url = "/"
-
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+weight = 30
 [[menu.main]]
-  name = "Tags"
-  weight = 30
-  identifier = "tags"
-  url = "/tags/"
-
-# Add your own params here
+identifier = "home"
+name = "Home"
+url = "/"
+weight = 10
 [params]
-  author = "Scott Guymer"
-  avatar = "/images/main/scottguymer.jpg"
-  seotitle = "Principal Engineer"
-  subtitle = "~ Software Engineer ~"
-  description = "Blogging about software engineering, leading teams and life in general."
-  paginate = 10
-
-  # Choose your social networks
-  email = "blog@scottguymer.co.uk"
-  github = "scottguymer"
-  twitter = "mr_scottguymer"
-  linkedin = "scottguymer"
-  # facebook = "facebook_username"
-  # google = "googlplus_id_number"
-  # instagram = "instagram_username"
-  # youtube = "youtube_username"
-  # vimeo = "vimeo_username"
-  # medium = "medium_username"
-  # quora = "quora_username"
-  # pinterest = "pinterest_username"
-  # dribbble = "dribbble_username"
-  # behance = "behance_username"
-  # jsfiddle = "jsfiddle_username"
-  # codepen = "codepen_username"
-
-
-  # Google Webmaster
-  # https://www.google.com/webmasters/
-  googleSiteVerification = "Rop88G3o4ZxIlfG_B3VHOKboh8LM_UpKZTB1d1CTbIE"
-
-  # Bing Webmaster
-  # https://www.bing.com/toolbox/webmaster/
-  # msValidate = "22596E34341DD1D17D6022C44647E587"
-
+author = "Scott Guymer"
+avatar = "/images/main/scottguymer.jpg"
+description = "Blogging about software engineering, leading teams and life in general."
+email = "blog@scottguymer.co.uk"
+github = "scottguymer"
+googlesiteverification = "Rop88G3o4ZxIlfG_B3VHOKboh8LM_UpKZTB1d1CTbIE"
+linkedin = "scottguymer"
+paginate = 10
+seotitle = "Principal Engineer"
+subtitle = "~ Software Engineer ~"
+twitter = "mr_scottguymer"

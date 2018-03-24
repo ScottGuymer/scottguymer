@@ -1,10 +1,9 @@
 +++
 author = "Scott Guymer"
-tags = [""]
-date = "2018-03-09T10:19:18+00:00"
+date = "2018-03-09T10:19:18Z"
 draft = true
+tags = [""]
 title = "How I created this blog"
-type = "post"
 
 +++
 ## HUGO

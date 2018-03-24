@@ -1,8 +1,9 @@
 +++
 date = "2014-04-09T00:00:00Z"
-title = "About"
-menu = "main"
 layout = "about"
+title = "About"
+[menu.main]
+
 +++
 Hi! Im Scott.
 
