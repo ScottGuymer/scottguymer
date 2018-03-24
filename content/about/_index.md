@@ -2,6 +2,7 @@
 date = "2014-04-09T00:00:00Z"
 title = "About"
 menu = "main"
+layout = "about"
 +++
 Hi! Im Scott.
 

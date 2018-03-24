@@ -1,12 +1,6 @@
 +++
 author = "Scott Guymer"
-categories = ["Software Engineering", "Reading"]
 date = "2018-03-09T17:54:40+00:00"
-description = "Books that I think make up essential knowledge that all software engineers should know so that they can better collaborate."
-featured = ""
-featuredalt = ""
-featuredpath = ""
-linktitle = ""
 tags = ["Software Engineering", "Reading"]
 title = "My Software Engineering Reading List"
 type = "post"
