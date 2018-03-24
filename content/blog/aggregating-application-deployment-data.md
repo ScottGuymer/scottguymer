@@ -2,8 +2,7 @@
 author = "Scott Guymer"
 categories = ["deployment"]
 date = "2018-03-24T11:39:23+00:00"
-description = ""
-draft = true
+description = "Creating a single pane of glass for all of your deployments."
 featured = ""
 featuredalt = ""
 featuredpath = ""
@@ -16,7 +15,7 @@ Any company of a decent size and age that creates software at any scale will hav
 
 When it comes to deployment software there are often lots of changes that have happened over time and more than likely more than one tool that is currently in use across your teams.
 
-I know within the team i work in we have about 4
+I know within the org I work in we have about 4 (that i know of!)
 
 * Jenkins
 * GitLab Pipelines
@@ -89,7 +88,21 @@ To do this we are able to insert another HTTP request into the logic app. It wil
 
 ### GitLab
 
-There seem to be a few more issues with the data that comes back from GitLab. Firstly there is no notion of an environment in the pipelines web-hook data. So its a little tricky to figure out what has been deployed and where. Through the teams that use it within our org there seems to be some loose naming conventions for pipeline stages that has allowed me to pull the data apart in processing and gain some insight into what has been deployed and where.
+There seem to be a few more issues with the data that comes back from GitLab. Firstly there is no notion of an environment in the pipelines web-hook data. So its a little tricky to figure out what has been deployed and where. Through the teams that use it within our org there seems to be some loose naming conventions for pipeline stages that has allowed me to pull the data apart in processing and gain some insight into what has been deployed and where. The deploy stage is helpfully called `deploy` and each job is named using the basic schema of `deploy:environment` and although all the jobs show up in the data only the one that has actually been deployed will be marked as succeeded.
+
+Something like this 
+
+    {
+    	"id": 467840,
+    	"stage": "deploy",
+    	"name": "deploy:uat",
+        "status": "success",
+        "created_at": "2018-03-24 09:50:30 UTC",
+        "started_at": "2018-03-24 09:54:05 UTC",
+    	"finished_at": "2018-03-24 09:58:01 UTC",
+    ....
+
+I am able to transform this data later when processing it. So i can get the data that i need but it isn't perfect.
 
 ## Rationalising the data
 
@@ -101,9 +114,11 @@ From the data collected above I spent some time thinking about what data was str
 * Status
 * System
 
-I then used Power BI pull in the data and 
+I then used Power BI pull in the data and transform and shape it into the structure above to end up with one stream of data that could be used to visualise. I will go into what i did within Power BI in part 2 of this post.
 
-Future nice to haves
+## Future nice to haves
+
+Throughout doing this i have been thinking about how this data may be used to provide insight into the development and deployment process within teams.
 
 * Deployment length - to help identify long and problematic deploys
 * Explicit commit sha to track back to source code
