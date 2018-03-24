@@ -17,31 +17,6 @@ fields:
   type: text
   hidden: false
   default: ''
-- name: description
-  label: Description
-  type: text
-  hidden: false
-  default: ''
-- name: featured
-  label: Featured
-  type: text
-  hidden: false
-  default: ''
-- name: featuredalt
-  label: Featuredalt
-  type: text
-  hidden: false
-  default: ''
-- name: featuredpath
-  label: Featuredpath
-  type: text
-  hidden: false
-  default: ''
-- name: linktitle
-  label: Linktitle
-  type: text
-  hidden: false
-  default: ''
 - name: title
   label: Title
   type: text
