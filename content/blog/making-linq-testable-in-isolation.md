@@ -3,7 +3,6 @@ author = "Scott Guymer"
 categories = ["c#", "linq"]
 date = "2018-03-12T10:53:21+00:00"
 description = ""
-draft = true
 featured = ""
 featuredalt = ""
 featuredpath = ""
@@ -29,6 +28,7 @@ I have found this pattern very useful for abstracting away complex LINQ statemen
 
 The first thing we need to do is define an interface for all of our queries. This interface uses a fair bit of generics and basically allows you to define an implementation where the in and out types are fixed. It is built on the premise that you have an `IQueryable<T>` of elements that you want to operate on which forms the input of the `Run` method. You are then free to define what sort of type you want to return. It could be a single object or another `IList<T>` or even another `IQueryable<T>`.
 
+```csharp
     using System.Linq;
     
     /// <summary>
@@ -40,9 +40,11 @@ The first thing we need to do is define an interface for all of our queries. Thi
     {
         TOut Run(IQueryable<TIn> objects);
     }
+```
 
 So we now have an interface that we can use to define our query implementations. To do this we simply define a class that implements the interface `ISelect<in TIn, out TOut>` as simple example of this is below. Where we are expecting a collection of posts in an a filtered collection of posts returned.
 
+```csharp
     using System.Linq;
     
     public class ExampleQuery : ISelect<in Post, out IEnumerable<Post>>
@@ -52,9 +54,11 @@ So we now have an interface that we can use to define our query implementations.
           return objects.Where(x => x.Published);
         }
     }
+```
 
 This seems pretty simple and you might be wondering what the point it. So now we move on to an example of how we might test this LINQ in isolation from any other code it might execute within. You can see from the test below that we create a list of test data, then instantiate the subject under test and execute the `Run()` method. We can then perform any assertions we want about the result, checking the size of the returned set or even the contents themselves. We can have as many tests as we need to test the functionality of the LINQ query.
 
+```csharp
     using System.Linq;
     
     [TestFixture]
@@ -72,9 +76,11 @@ This seems pretty simple and you might be wondering what the point it. So now we
             // assert things about the collection here
         }
     }
+```
 
 Because the `ISelect` implementation doesnt retain any state we can quite easily slot it into any code that we might need to wrap it in. Below is an example of how we would run our selector within a piece of code that may have some logic either side of the selector. You can see in this example we are pumping a table from a Entity Framework DBContext into the run method. This could quite easily be any other ORM or even just a collection of POCO objects.
 
+```csharp
     using System.Linq;
     
     public class UseASelector
@@ -88,6 +94,7 @@ Because the `ISelect` implementation doesnt retain any state we can quite easily
             var result = selector.run(db.myTable);
         }
     }
+```
 
 Ok so thats pretty strightforward you might say. What about if i need to be able to influence the result with some sort of variable. Taking the posts example above we might want to filter by all posts published after a certain date. We can extend our implementation of `ISelect` further by introducing the concept of parameters that can be used to influence the query. These parameters are passed as part of a constructor and are kept private inside the implementation to prevent any unwanted behaviour. You can see below we pass in a `DateTime` and use this as part of the where clause in our LINQ statement.
 
