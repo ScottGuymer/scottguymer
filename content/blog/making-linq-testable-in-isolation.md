@@ -1,13 +1,8 @@
 +++
 author = "Scott Guymer"
-categories = ["c#", "linq"]
+tags = ["c#", "linq"]
 date = "2018-03-12T10:53:21+00:00"
-description = "LINQ is an awesome feature for c# and .net but complex LINQ statements can often be difficult to test. This is my take on making it testable."
 draft = true
-featured = ""
-featuredalt = ""
-featuredpath = ""
-linktitle = ""
 title = "Unit testing complex LINQ statements"
 type = "post"
 

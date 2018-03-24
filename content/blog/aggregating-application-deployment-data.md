@@ -1,12 +1,7 @@
 +++
 author = "Scott Guymer"
-categories = ["deployment"]
+tags = ["deployment"]
 date = "2018-03-24T11:39:23+00:00"
-description = "Creating a single pane of glass for all of your deployments."
-featured = ""
-featuredalt = ""
-featuredpath = ""
-linktitle = ""
 title = "Aggregating application deployment data (Part 1)"
 type = "post"
 
