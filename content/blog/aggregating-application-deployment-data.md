@@ -69,16 +69,16 @@ $ curl -n https://api.heroku.com/apps/$APP_ID_OR_NAME/pipeline-couplings \
 This returns the details of the coupling of the pipeline to the app like this
 ```json
 {
-  "app": {
-  "id": "01234567-89ab-cdef-0123-456789abcdef"
-         },
- "created_at": "2012-01-01T12:00:00Z",
- "id": "01234567-89ab-cdef-0123-456789abcdef",
- "pipeline": {
-  "id": "01234567-89ab-cdef-0123-456789abcdef"
-             },
- "stage": "production",
- "updated_at": "2012-01-01T12:00:00Z"
+	"app": {
+		"id": "01234567-89ab-cdef-0123-456789abcdef"
+	},
+ 	"created_at": "2012-01-01T12:00:00Z",
+ 	"id": "01234567-89ab-cdef-0123-456789abcdef",
+ 	"pipeline": {
+  		"id": "01234567-89ab-cdef-0123-456789abcdef"
+    },
+ 	"stage": "production",
+ 	"updated_at": "2012-01-01T12:00:00Z"
 }
 ```
 This gives is the stage which will be our environment data.
