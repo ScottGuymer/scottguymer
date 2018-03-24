@@ -1,7 +1,13 @@
 +++
 author = "Scott Guymer"
-tags = ["deployment"]
+categories = ["deployment"]
 date = "2018-03-24T11:39:23+00:00"
+description = "Creating a single pane of glass for all of your deployments."
+featured = ""
+featuredalt = ""
+featuredpath = ""
+linktitle = ""
+tags = ["deployment"]
 title = "Aggregating application deployment data (Part 1)"
 type = "post"
 
@@ -56,25 +62,25 @@ Within Heroku each app is tied to a pipeline which has a stage. There is the not
 [https://devcenter.heroku.com/articles/platform-api-reference#pipeline-coupling-info-by-app](https://devcenter.heroku.com/articles/platform-api-reference#pipeline-coupling-info-by-app "query the pipeline couplings from the appId ")
 
 This looks something like this, with the addition of an Auth header.
-
-    $ curl -n https://api.heroku.com/apps/$APP_ID_OR_NAME/pipeline-couplings \
-      -H "Accept: application/vnd.heroku+json; version=3"
-
+```bash
+$ curl -n https://api.heroku.com/apps/$APP_ID_OR_NAME/pipeline-couplings \
+	-H "Accept: application/vnd.heroku+json; version=3"
+```
 This returns the details of the coupling of the pipeline to the app like this
-
-    {
-      "app": {
-        "id": "01234567-89ab-cdef-0123-456789abcdef"
-      },
-      "created_at": "2012-01-01T12:00:00Z",
-      "id": "01234567-89ab-cdef-0123-456789abcdef",
-      "pipeline": {
-        "id": "01234567-89ab-cdef-0123-456789abcdef"
-      },
-      "stage": "production",
-      "updated_at": "2012-01-01T12:00:00Z"
-    }
-
+```json
+{
+  "app": {
+  "id": "01234567-89ab-cdef-0123-456789abcdef"
+         },
+ "created_at": "2012-01-01T12:00:00Z",
+ "id": "01234567-89ab-cdef-0123-456789abcdef",
+ "pipeline": {
+  "id": "01234567-89ab-cdef-0123-456789abcdef"
+             },
+ "stage": "production",
+ "updated_at": "2012-01-01T12:00:00Z"
+}
+```
 This gives is the stage which will be our environment data.
 
 To do this we are able to insert another HTTP request into the logic app. It will make a request to the Heroku API using the app id received in the web-hook to get the pipeline information and attach it to each record when inserting into the db. This way we now have the application data and the pipeline that it is attached to. This logic app now has 3 steps but it was super simple to achieve this and is sill very easy to understand whats going on. The HTTP trigger is omitted from this picture is identical but we have added in another HTTP request step before saving to the DB. We have used the JSON schema to pull out the appid from the incoming JSON and pushed that in as a part of the HTTP request. We then append the body of the response to the document we insert, alongside the web-hook data.
@@ -86,17 +92,17 @@ To do this we are able to insert another HTTP request into the logic app. It wil
 There seem to be a few more issues with the data that comes back from GitLab. Firstly there is no notion of an environment in the pipelines web-hook data. So its a little tricky to figure out what has been deployed and where. Through the teams that use it within our org there seems to be some loose naming conventions for pipeline stages that has allowed me to pull the data apart in processing and gain some insight into what has been deployed and where. The deploy stage is helpfully called `deploy` and each job is named using the basic schema of `deploy:environment` and although all the jobs show up in the data only the one that has actually been deployed will be marked as succeeded.
 
 Something like this 
-
-    {
-    	"id": 467840,
-    	"stage": "deploy",
-    	"name": "deploy:uat",
-        "status": "success",
-        "created_at": "2018-03-24 09:50:30 UTC",
-        "started_at": "2018-03-24 09:54:05 UTC",
-    	"finished_at": "2018-03-24 09:58:01 UTC",
-    ....
-
+```json
+{
+   "id": 467840,
+   "stage": "deploy",
+   "name": "deploy:uat",
+   "status": "success",
+   "created_at": "2018-03-24 09:50:30 UTC",
+   "started_at": "2018-03-24 09:54:05 UTC",
+   "finished_at": "2018-03-24 09:58:01 UTC",
+ ...
+```
 I am able to transform this data later when processing it. So i can get the data that i need but it isn't perfect.
 
 ## Rationalising the data
