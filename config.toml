@@ -10,21 +10,20 @@ languageCode = "en-us"
 theme = "hugo-nuo"
 title = "Scott Guymer"
 [[menu.main]]
-identifier = "home"
-name = "Home"
-url = "/"
-weight = 10
+identifier = "about"
+name = "About"
+url = "/about/"
+weight = 30
 [[menu.main]]
 identifier = "tags"
 name = "Tags"
 url = "/tags/"
 weight = 20
 [[menu.main]]
-identifier = "about"
-name = "About"
-url = "/about/"
-weight = 30
-
+identifier = "home"
+name = "Home"
+url = "/"
+weight = 10
 [params]
 author = "Scott Guymer"
 avatar = "/images/main/scottguymer.jpg"
