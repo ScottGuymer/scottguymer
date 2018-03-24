@@ -1,0 +1,19 @@
+{{ define "main" }}
+  {{ partial "header.html" . }}
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">{{ .Title }}</h1>
+    </header>
+    <article class="post-content">{{ .Content }}</article>
+    <footer class="post-footer">
+      {{ if isset .Params "tags" }}
+      <ul class="post-tags">
+        {{ range $tag := .Params.tags }}
+          <li><a href="/tags/{{ $tag | urlize }}"><span class="tag">{{ $tag | title }}</span></a></li>
+        {{ end }}
+      </ul>
+      {{ end }}
+    </footer>
+  </section>
+  {{ partial "footer.html" . }}
+{{ end }}

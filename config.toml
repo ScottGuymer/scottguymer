@@ -10,15 +10,21 @@ languageCode = "en-us"
 theme = "hugo-nuo"
 title = "Scott Guymer"
 [[menu.main]]
-identifier = "tags"
-name = "Tags"
-url = "/tags/"
-weight = 30
-[[menu.main]]
 identifier = "home"
 name = "Home"
 url = "/"
 weight = 10
+[[menu.main]]
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+weight = 20
+[[menu.main]]
+identifier = "about"
+name = "About"
+url = "/about/"
+weight = 30
+
 [params]
 author = "Scott Guymer"
 avatar = "/images/main/scottguymer.jpg"
@@ -28,6 +34,6 @@ github = "scottguymer"
 googlesiteverification = "Rop88G3o4ZxIlfG_B3VHOKboh8LM_UpKZTB1d1CTbIE"
 linkedin = "scottguymer"
 paginate = 10
-seotitle = "Principal Engineer"
+seotitle = "Scott Guymer"
 subtitle = "~ Software Engineer ~"
 twitter = "mr_scottguymer"
