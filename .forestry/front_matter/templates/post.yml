@@ -11,13 +11,6 @@ fields:
   type: text
   hidden: false
   default: 
-- name: categories
-  label: Categories
-  type: tag_list
-  hidden: false
-  default:
-  - category
-  - subcategory
 - name: tags
   label: Tags
   type: tag_list
@@ -25,9 +18,3 @@ fields:
   default:
   - tag1
   - tag2
-- name: keywords
-  label: Keywords
-  type: list
-  hidden: false
-  default:
-  - tech
