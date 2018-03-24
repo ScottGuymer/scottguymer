@@ -1,10 +1,10 @@
 +++
+aliases = ["/blog/aggregating-application-deployment-data/"]
 author = "Scott Guymer"
 date = "2018-03-24T11:39:23Z"
 tags = ["deployment"]
 title = "Aggregating application deployment data (Part 1)"
-type = "post"
-aliases = ["/blog/aggregating-application-deployment-data/"]
+
 +++
 Any company of a decent size and age that creates software at any scale will have gone through a number of "technical evolutions". These come along as you hire new people, create new products or just better ways of doing things come along. The kind of changes I'm talking about are the adoption of different technologies over time and the introduction of new ones. This cuts right across different aspects of software, from languages to frameworks to techniques to tooling. We end up collecting an number of each for various reasons. It may even be a conscious choice where we see that one technology is better suited to solving a particular problem than another or one system is simply not as important and don't need the same investment. The reasons here aren't too important, the fact is you are in this situation and will be for a foreseeable amount of time.
 
