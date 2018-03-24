@@ -9,19 +9,16 @@ googleAnalytics = "UA-113812052-1"
 languageCode = "en-us"
 theme = "hugo-nuo"
 title = "Scott Guymer"
-
 [[menu.main]]
 identifier = "tags"
 name = "Tags"
 url = "/tags/"
 weight = 30
-
 [[menu.main]]
 identifier = "home"
 name = "Home"
 url = "/"
 weight = 10
-
 [params]
 author = "Scott Guymer"
 avatar = "/images/main/scottguymer.jpg"
