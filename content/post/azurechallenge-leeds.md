@@ -10,3 +10,15 @@ title = "AzureChallenge Leeds"
 This week I attended the Azure Challenge in Leeds hosted by Microsoft at the Hilton Leeds City.
 
 This was not your average workshop...
+
+Starting off
+
+Getting more complex
+
+Load testing
+
+The competition
+
+Performance improvements
+
+Team8 FTW
