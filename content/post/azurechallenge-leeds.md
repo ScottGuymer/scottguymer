@@ -67,7 +67,7 @@ We had a big problem with some of our components and they had crashed hard. We h
 
 ![](/uploads/2018/03/29/DumpsterFire2.jpg)
 
-It took us a while to get back up and running and we spent some time investigating the issues we had so they didn't happen again. We decided to switch come components out for Azure services so we could scale and tune them better. We ended up with an EventHub and CosmosDB instance.
+It took us a while to get back up and running and we spent some time investigating the issues we had so they didn't happen again. We decided to switch come components out for Azure services so we could scale and tune them better. 
 
 At this point we also decided that we probably needed a dev namespace for testing our improvements.
 
@@ -87,9 +87,9 @@ The result were great. We jumped straight into first place, with a bit of a lead
 
 We made some pretty decent performance tweaks to our platform. We tuned the Kubernetes resource request and limits to pack more instances into our servers. We also made sure that we had pre-scaled our service to take the load and made the autoscaler scale up the service more aggressively.
 
-On the Azure side we made sure that our EventHub was scaled up to a decent amount of throughput units and that auto inflating was enabled to inflate to the maximum possible.
+On the Azure side we made sure that our services were tuned to handle the load test. We spent a lot of time looking at the metrics and tweaking the settings.
 
-We quickly figured out that cosmos was still our big bottleneck. So we did some tweaking of the partitioning to make it partition and get more throughput. That should get us some more performance. Time for another load test.. This was going to be good...
+We quickly figured out that the persistence was still our big bottleneck. So we did some tweaking of the config to try get more throughput. That should get us some more performance from the front end. Time for another load test.. This was going to be good...
 
 ![](/uploads/2018/03/29/photofinish.jpg)
 
@@ -97,13 +97,13 @@ It was a draw.... Exactly the same stats as Team 7!!!
 
 ## Team8 FTW!
 
-There was going to be a decider... One final load test to separate the teams. Cosmos was still seeming like our big bottleneck. It seemed liked we were already at our maximum throughout units for the instance, it took us a while to realise that if we clicked unlimited when creating our collection we could go to 100,000 tpu... We decided to go for it and made a quick last minute update to the collection, we made it unlimited and turned the dial up to 11.
+There was going to be a decider... One final load test to separate the teams. Again the persistence was still seeming like our big bottleneck. It seemed liked we were already at our maximum performance for the instance, it took us a while to realise that there was still some more tweaking we could do... We decided to go for it and made a quick last minute update to the configuration, out simply we turned the dial up to 11.
 
 ![](/uploads/2018/03/29/volume-11-smushed.jpg)
 
 It was the final load test.... This was it..
 
-The results were awesome! We were in first place by quite a margin with sub 1s response times and under 1% errors. We had served something like 250k requests during the test and were hitting over 300rps on our 5 node cluster. We had won in the performance stakes by quite a margin! Even our availability was 98% for the 2 days of the event.
+The results were awesome! We were in first place by quite a margin with low response times and very few errors. We had served 1000s of requests during the test and our requests per second were the highest on the leaderboard. We had won in the performance stakes by quite a margin! Even our availability was great for the 2 days of the event.
 
 Our prize was a copy of [Kubernetes: Up and Running](http://amzn.eu/hh5St3h) each. (Which would have been good on day 1) I would highly recommend this book as your first port of call should you want to get up to speed with Kubernetes. Its simple, concise and covers all the bases. As a bonus its co-authored by the founders of Kubernetes so you are getting the info straight from the experts!
 
