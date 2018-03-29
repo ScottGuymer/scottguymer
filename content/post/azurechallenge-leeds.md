@@ -1,6 +1,6 @@
 +++
 categories = ["category", "subcategory"]
-date = "2018-03-29T13:27:50+00:00"
+date = "2018-03-29T13:27:50Z"
 keywords = ["tech"]
 tags = ["kubernetes", "azure"]
 title = "AzureChallenge Leeds"
