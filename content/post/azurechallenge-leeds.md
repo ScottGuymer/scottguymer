@@ -56,7 +56,7 @@ So we now had some visibility into our cluster and some way to build and deploy 
 
 ## Load testing
 
-It wasn't too long before things started going wrong!! 
+It wasn't too long before things started going wrong!!
 
 It took a while for us to realise that we were being secretly load tested and it was taking our cluster down!! Panic!
 
@@ -66,15 +66,15 @@ It took us a while to get back up and running and we spent some time investigati
 
 At this point we also decided that we probably needed a dev namespace for testing our improvements.
 
-It was the end of day 1 already! We would have to come back tomorrow and continue tuning our s
+It was the end of day 1 already! We would have to come back tomorrow and continue tuning our system.
 
 ## The Competition
 
-A couple more load tests later and things were hanging together, 
+A couple more load tests later and things were hanging together,
 
 ## Performance improvements
 
-We made some pretty decent performance tweaks to our platform. We tuned the kubernetes resource request and limits to pack more instances into our servers. We also made sure that we had pre-scaled our service to take the load and made the autoscaler scale up the service more aggressively. 
+We made some pretty decent performance tweaks to our platform. We tuned the kubernetes resource request and limits to pack more instances into our servers. We also made sure that we had pre-scaled our service to take the load and made the autoscaler scale up the service more aggressively.
 
 On the Azure side we made sure that our event hub was scaled up to a decent amount of throughput units and that auto inflating was enabled to inflate to the maximum possible.
 
