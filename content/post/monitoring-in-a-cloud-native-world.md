@@ -13,6 +13,8 @@ Dont get me wrong they are for the most part great products and they do absolute
 
 <!--more-->
 
+APM solutions seem to provide a false sense of comfort for teams. "We have installed XYZ and we have monitoring covered"often with little or no thought put into _what_ we are even interested in monitoring within our applications. Of course they all come with sensible defaults and give you lots of interesting metrics and graphs to look at and they will for sure give you _some_ insight into what it going on within your application
+
 Provide a robust, scalable and opinionated way of collecting instrumentation across your entire deployment. This will provide the sorts of metrics from applications. This should come "for free" as much as possible as a benefit of using the platform itself.
 
  
@@ -26,3 +28,7 @@ Developers should also be able to implement their own instrumentation within the
  
 
 We should move away from the traditional APM style vendors (New Relic, AppD etc) in favour of having each application explicitly have to implement the reporting of the metrics it cares most about. This forces development teams to have to think about the way their application operates and what is important to the application during its operation and what is important for monitoring the usefulness or success of the application itself. Rather than just relying on a 3rd party "tool" to take care of this and no thought being put into it.
+
+## Power of peer review
+
+One of the major not so obvious benefits in this approach is that we are "writing code" for our metrics. This means that it will have to go through the standard peer review process your teams use, in lots of teams this is sort of pull request within git. This means that this code has to be reviewed, discussed and refactored before it makes it into your application. 
