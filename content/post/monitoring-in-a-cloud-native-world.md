@@ -1,6 +1,7 @@
 +++
 categories = ["category", "subcategory"]
 date = "2018-06-13T13:51:05+00:00"
+draft = true
 keywords = ["tech"]
 tags = ["monitoring", "instrumentation", "kubernetes", "OpenTracing", "Prometheus"]
 title = "Application Insight in a cloud native world"
