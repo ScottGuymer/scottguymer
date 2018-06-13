@@ -73,3 +73,7 @@ Developers need to be asked to implement their own instrumentation within the ap
 ## Power of peer review
 
 One of the major not so obvious benefits in this approach is that we are "writing code" for our insight. This means that it will have to go through the standard peer review process your teams use, in lots of teams this is sort of pull request within git. This means that this code has to be reviewed, discussed and refactored before it makes it into your application.
+
+## Deployment
+
+The other great benefit is that all of this is deployed with your application. Each and every change is deployed as part of your built application. Meaning that all changes have to go through the same pipeline and changes don't have to be done in a different system or control panel. It bring control of the insight back into the code itself and back into your Git repository. Changes can be made and tested on branches without affecting your production configuration and can be tied back to specific deployments and changes.
