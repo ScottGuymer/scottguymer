@@ -2,7 +2,7 @@
 categories = ["category", "subcategory"]
 date = "2018-06-13T15:44:05+01:00"
 keywords = ["tech"]
-tags = ["tag1", "tag2"]
+tags = ["application insight", "monitoring", "kubernetes", "OpenTracing", "Prometheus", "logging", "tracing"]
 title = "Application Insight in a cloud native world"
 
 +++
