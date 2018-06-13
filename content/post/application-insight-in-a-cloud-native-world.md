@@ -21,7 +21,6 @@ My current thinking is splitting "application insight" into 3 distinct but inter
 * Log Aggregation
 * Instrumentation
 * Tracing
-* 
 
 We often think of these things collectively as "monitoring" but I would go further and say that monitoring is what we do with this information, how we aggregate it and use it to give us insight into what is going on. Part of this is ensuring that the system lets us know when it is encountering issues, preferably before they happen.
 
