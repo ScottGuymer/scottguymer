@@ -1,25 +1,24 @@
 +++
 categories = ["category", "subcategory"]
 date = "2018-06-14T20:09:50+01:00"
-draft = true
 keywords = ["tech"]
 tags = ["conferences", "internet"]
 title = "Cloudflare #InternetSummit"
 
 +++
-I only use CloudFlare for this blog so you can imagine I was quite surprised when I got an invite to their first European #internetSummit hosted in London. I signed right up and was pretty curious about the topics.
+I only use Cloudflare for this blog so you can imagine I was quite surprised when I got an invite to their first European [#internetSummit](https://twitter.com/hashtag/InternetSummit) hosted in London. I signed right up and was pretty curious about the topics.
 
 Compared to some conferences it was a simple single track conference that consisted entirely of panel discussions rather than your more traditional speaker/talk arrangement. This is by no means a bad thing at all. I didn’t have to chose a track or miss anything at all. Took all of the anxiety out of attending a conference. Also the panel guests were thoroughly excellent. Although I'm not going to write about all the talks there were a couple that really stood out.
 
-\[The full agenda can be found here\]([https://www.cloudflare.com/internet-summit/agenda/2018/](https://www.cloudflare.com/internet-summit/agenda/2018/ "https://www.cloudflare.com/internet-summit/agenda/2018/"))
+[The full agenda can be found here](https://www.cloudflare.com/internet-summit/agenda/2018/)
 
-\# Open Data, Open Government, & Open Source in Africa
+# Open Data, Open Government, & Open Source in Africa
 
 > Nnenna Nwakanma, Senior Policy Manager, World Wide Web Foundation
 
 > Jeremy Johnson, Co-Founder & CEO, Andela
 
-This talk really resonated with me, mostly because of the co-speaker \[@nnenna\]([https://twitter.com/nnenna](https://www.cloudflare.com/internet-summit/agenda/2018/ "https://www.cloudflare.com/internet-summit/agenda/2018/")) who was totally awesome. Her passion came through (along with the occasional f-bomb!) to everyone in the audience.
+This talk really resonated with me, mostly because of the co-speaker [@nnenna](https://twitter.com/nnenna) who was totally awesome. Her passion came through (along with the occasional f-bomb!) to everyone in the audience.
 
 {{< tweet 1007212067416428544 >}}
 
@@ -27,11 +26,11 @@ Both she and Jeremy Johnson from Andela were talking about how to progress the t
 
 I wholeheartedly agree that Jeremys statement that "Race and gender have no influence on talent". It can be found anywhere and everywhere. Its our job to create an environment where it can grow and spread. There are amazing new people to be discovered all over Africa, it sounds like Andela are doing a lot of the work to help uncover them.
 
-The challenges are unbelievable however, for instance only 50% of the population can read. How do you spread digital experiences with that challenge to overcome? There are other issues such as lack of consistent power supply, even in major cities, and even monopiles like single ISPs for an entire country.
+The challenges are unbelievable however, for instance only 50% of the population can read. How do you spread digital experiences with that challenge to overcome? There are other issues such as lack of consistent power supply, even in major cities, and even monopolies like single ISPs for an entire country.
 
 The other thing that Nnenna said that was really interesting is that young Africans don’t want to leave Africa to work in technology. They are perfectly happy where they are. There is such promise in this emerging tech scene. One that I certainly believe has the potential to explode over the coming years.
 
-\# Getting Governments & the Public to Take Cybercrime Seriously
+# Getting Governments & the Public to Take Cybercrime Seriously
 
 > Detective Superintendent Andrew Gould, National Cybercrime Programme Lead, National Police Chiefs’ Council
 
