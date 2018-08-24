@@ -19,6 +19,8 @@ The code for this is fairly trivial (but took a long time to figure out from the
 
 The part of this that really started to stump me was how to deploy this into a real live cluster. The difficult part was that the hook will only work over HTTPS and I wanted this to be re-usable and be able to have a cert that could be provisioned on the fly.
 
+I started by adding nginx into the pod and using that as the SSL termination and forwarding on all requests to the node app running in another container in the same pod. You can see here that its fairly straightforward and the pod just mounts 2 volumes, 1 containing the SSL from a secret (more on that later) and the other the contents of a config map containing the nginx config. [https://github.com/lawrencegripper/MutatingAdmissionsController/blob/master/chart/registry-rewriter/templates/deployment.yaml](https://github.com/lawrencegripper/MutatingAdmissionsController/blob/master/chart/registry-rewriter/templates/deployment.yaml "https://github.com/lawrencegripper/MutatingAdmissionsController/blob/master/chart/registry-rewriter/templates/deployment.yaml")
+
 You also have to supply the root CA bundle to the webhook configuration which meant that self signed certificates were out (or at least beyond me to figure out!). You can see this config in the kubernetes YAML below. This is configured to use a function hosted on ngrok for development.
 
     apiVersion: admissionregistration.k8s.io/v1beta1
@@ -241,9 +243,9 @@ I ended up with a job like this, that re-uses a script very close to that of ist
           restartPolicy: Never
       backoffLimit: 4
 
-For the purposes of testing I didn't bake this into the container and just inlined the script in to the job definition. Its a bit messy but allowed me to test a lot of things out without the loop of creating a container and deploying it.
+For the purposes of testing I didn't bake this into the container and just inlined the script in to the job definition. Its a bit messy but allowed me to test a lot of things out without the loop of creating a container and deploying it. If I continue to find this useful i will pull it out into its own repo and make it more re-usable.
 
-So now we have a re-usable webhook that generates its own certificate and takes in properties to re-write the image name
+So now we have a re-usable webhook that generates its own certificate and takes in properties to re-write the image name. A job runs on deployment to provision an SSL certificate and the deployment uses it once it becomes available.
 
 You can see the details here [https://github.com/lawrencegripper/MutatingAdmissionsController#helm-chart](https://github.com/lawrencegripper/MutatingAdmissionsController#helm-chart "https://github.com/lawrencegripper/MutatingAdmissionsController#helm-chart")
 
