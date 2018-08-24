@@ -20,7 +20,7 @@ The part of this that really started to stump me was how to deploy this into a r
 
 I started by adding nginx into the pod and using that as the SSL termination and forwarding on all requests to the node app running in another container in the same pod. You can see here that its fairly straightforward and the pod just mounts 2 volumes, 1 containing the SSL from a secret (more on that later) and the other the contents of a config map containing the nginx config. [https://github.com/lawrencegripper/MutatingAdmissionsController/blob/master/chart/registry-rewriter/templates/deployment.yaml](https://github.com/lawrencegripper/MutatingAdmissionsController/blob/master/chart/registry-rewriter/templates/deployment.yaml "https://github.com/lawrencegripper/MutatingAdmissionsController/blob/master/chart/registry-rewriter/templates/deployment.yaml")
 
-You also have to supply the root CA bundle to the webhook configuration which meant that self signed certificates were out (or at least beyond me to figure out!). You can see this config in the kubernetes YAML below. This is configured to use a function hosted on ngrok for development.
+You also have to supply the root CA bundle to the webhook configuration which meant that self signed certificates were out (or at least beyond me to figure out!). You can see this config in the kubernetes YAML below. This is configured to use a function hosted on ngrok for development. By default this config doesn't even trust the cluster CA, you cant leave this out and if you leave it blank it invalidates every certificate.
 
     apiVersion: admissionregistration.k8s.io/v1beta1
     kind: MutatingWebhookConfiguration
