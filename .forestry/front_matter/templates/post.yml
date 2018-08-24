@@ -1,4 +1,5 @@
 ---
+label: post
 hide_body: false
 is_partial: false
 fields:
@@ -19,3 +20,13 @@ fields:
   default:
   - tag1
   - tag2
+pages:
+- content/post/kubernetes-mutating-webhook-configuration.md
+- content/post/making-linq-testable-in-isolation.md
+- content/post/my-software-engineering-reading-list.md
+- content/post/capturing-all-traffic-in-fiddler.md
+- content/post/cloudflare--internetsummit.md
+- content/post/how-i-created-this-blog.md
+- content/post/aggregating-application-deployment-data.md
+- content/post/azurechallenge-leeds.md
+- content/post/application-insight-in-a-cloud-native-world.md

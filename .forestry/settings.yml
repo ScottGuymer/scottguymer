@@ -4,11 +4,24 @@ auto_deploy: true
 admin_path: 
 webhook_url: 
 sections:
-  content/post:
-    default_front_matter_template: post
+- type: directory
+  path: content/post
+  label: Post
+  create: all
+  match: "**/*"
+- type: directory
+  path: content/contact
+  label: Contact
+  create: all
+  match: "**/*"
+- type: directory
+  path: content/about
+  label: About
+  create: all
+  match: "**/*"
 upload_dir: static/uploads
 public_path: "/uploads"
 front_matter_path: "/uploads"
 use_front_matter_path: false
 file_template: ":year:/:month:/:day:/:filename:"
-version: 0.31.1
+version: 0.42.1
