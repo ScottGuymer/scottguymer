@@ -7,9 +7,9 @@ tags = ["kubernetes"]
 title = "Kubernetes Mutating Webhook Configuration"
 
 +++
-Sometimes in Kubernetes you want to have some control over what is allowed into your cluster and even some control over the properties. 
+Sometimes in Kubernetes you want to have some control over what is allowed into your cluster and even some control over the properties.
 
-With a Mutating Webhook Configuration you can do this. Essentially you can subscribe to different sorts of admission events on the API and each time an even happens it will forward it thought a webhook you can configure. I this way you can change the config before it is submitted to the nodes. 
+With a Mutating Webhook Configuration you can do this. Essentially you can subscribe to different sorts of admission events on the API and each time an even happens it will forward it thought a webhook you can configure. I this way you can change the config before it is submitted to the nodes.
 
 Its pretty straightforward and easy, you write a server that accepts JSON over HTTP and you respond with a base64 encoded patch to the JSON that describes the changes you want to make before it is admitted.
 
@@ -59,13 +59,196 @@ I then spent some time on the realisation that you could get the Kubernetes clus
       - key encipherment
       - server auth
 
-You just need to provide a base64 encoded representation of your CSR. Once you have file you can submit it to the API with `kubectl apply` and you will get the following when you run `kubectl get csr` 
+You just need to provide a base64 encoded representation of your CSR. Once you have file you can submit it to the API with `kubectl apply` and you will get the following when you run `kubectl get csr`
 
     NAME                  AGE       REQUESTOR   CONDITION
     my-svc.my-namespace   7s        client      Pending
 
-You can see this certificate is pending approval from a user within kubernetes before it is issued out. You will need to run `kubectl certificate approve` to approve the csr and issue out the cert. Once approved you can get the certificate from the API by running `kubectl get csr my-svc.my-namespace -o jsonpath='{.status.certificate}'` and this will return the certificate in base64. 
+You can see this certificate is pending approval from a user within kubernetes before it is issued out. You will need to run `kubectl certificate approve` to approve the csr and issue out the cert. Once approved you can get the certificate from the API by running `kubectl get csr my-svc.my-namespace -o jsonpath='{.status.certificate}'` and this will return the certificate in base64.
 
-You can output the certificate to a file by using 
+You can output the certificate to a file by using
 
     kubectl get csr my-svc.my-namespace -o jsonpath='{.status.certificate}' | openssl base64 -d -A -out server-cert.pem
+
+Presuming you still have the key that you used to generate the CSR you can create a secret with the following command
+
+    kubectl create secret tls my-new-cert \
+                        --key=server-key.pem \
+                        --cert=server-cert.pem \
+                        --dry-run -o yaml |
+                    kubectl -n default apply -f -
+
+Following this process will give you a nice cluster signed cert outputted into a secret that could be consumed from any pod in that namespace. Making valid HTTPS possible within the cluster.
+
+To create the webhook you would need to get the caBundle from the cluster using the following
+
+    kubectl get configmap -n kube-system extension-apiserver-authentication -o=jsonpath='{.data.client-ca-file}' | base64 | tr -d '\n'
+
+# All of that but with a touch of automation...
+
+So the above seems very manual and has lots of steps, including a manual approval step, that i really want to be automatic as part of a helm chart or similar.
+
+I chose to use a Job to create and issue out the certificate and save it into a secret for the deployment hosting the webhook to pick up.
+
+I ended up with a job like this, that re-uses a script very close to that of istio.
+
+    apiVersion: batch/v1
+    kind: Job
+    metadata:
+      name: {{ template "registry-rewriter.fullname" . }}
+      namespace: kube-system
+      labels:
+        app: {{ template "registry-rewriter.name" . }}
+        chart: {{ template "registry-rewriter.chart" . }}
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
+    spec:
+      template:
+        spec:
+          containers:
+          - name: pi
+            image: pivotalservices/pks-kubectl:1.2.0-Beta-1
+            command: ["/bin/bash"]
+            args:
+              - "-c"
+              - |
+                #!/bin/bash
+    
+                set -e
+    
+                usage() {
+                    cat <<EOF
+                Generate certificate suitable for use with an sidecar-injector webhook service.
+                This script uses k8s' CertificateSigningRequest API to a generate a
+                certificate signed by k8s CA suitable for use with sidecar-injector webhook
+                services. This requires permissions to create and approve CSR. See
+                https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster for
+                detailed explantion and additional instructions.
+                The server key/cert k8s CA cert are stored in a k8s secret.
+                usage: ${0} [OPTIONS]
+                The following flags are required.
+                      --service          Service name of webhook.
+                      --namespace        Namespace where webhook service and secret reside.
+                      --secret           Secret name for CA certificate and server certificate/key pair.
+                EOF
+                    exit 1
+                }
+    
+                while [[ $# -gt 0 ]]; do
+                    case ${1} in
+                        --service)
+                            service="{{ template "registry-rewriter.fullname" . }}-service"
+                            shift
+                            ;;
+                        --secret)
+                            secret="{{ template "registry-rewriter.fullname" . }}"
+                            shift
+                            ;;
+                        --namespace)
+                            namespace="kube-system"
+                            shift
+                            ;;
+                        *)
+                            usage
+                            ;;
+                    esac
+                    shift
+                done
+    
+                [ -z ${service} ] && service={{ template "registry-rewriter.fullname" . }}-service
+                [ -z ${secret} ] && secret={{ template "registry-rewriter.fullname" . }}
+                [ -z ${namespace} ] && namespace=kube-system
+    
+                if [ ! -x "$(command -v openssl)" ]; then
+                    echo "openssl not found"
+                    exit 1
+                fi
+    
+                csrName=${service}.${namespace}
+                tmpdir=$(mktemp -d)
+                echo "creating certs in tmpdir ${tmpdir} "
+    
+                cat <<EOF >> ${tmpdir}/csr.conf
+                [req]
+                req_extensions = v3_req
+                distinguished_name = req_distinguished_name
+                [req_distinguished_name]
+                [ v3_req ]
+                basicConstraints = CA:FALSE
+                keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+                extendedKeyUsage = serverAuth
+                subjectAltName = @alt_names
+                [alt_names]
+                DNS.1 = ${service}
+                DNS.2 = ${service}.${namespace}
+                DNS.3 = ${service}.${namespace}.svc
+                EOF
+    
+                openssl genrsa -out ${tmpdir}/server-key.pem 2048
+                openssl req -new -key ${tmpdir}/server-key.pem -subj "/CN=${service}.${namespace}.svc" -out ${tmpdir}/server.csr -config ${tmpdir}/csr.conf
+    
+                # clean-up any previously created CSR for our service. Ignore errors if not present.
+                kubectl delete csr ${csrName} 2>/dev/null || true
+    
+                # create  server cert/key CSR and  send to k8s API
+                cat <<EOF | kubectl create -f -
+                apiVersion: certificates.k8s.io/v1beta1
+                kind: CertificateSigningRequest
+                metadata:
+                  name: ${csrName}
+                spec:
+                  groups:
+                  - system:authenticated
+                  request: $(cat ${tmpdir}/server.csr | base64 | tr -d '\n')
+                  usages:
+                  - digital signature
+                  - key encipherment
+                  - server auth
+                EOF
+    
+                # verify CSR has been created
+                while true; do
+                    kubectl get csr ${csrName}
+                    if [ "$?" -eq 0 ]; then
+                        break
+                    fi
+                done
+    
+                # approve and fetch the signed certificate
+                kubectl certificate approve ${csrName}
+                # verify certificate has been signed
+                for x in $(seq 10); do
+                    serverCert=$(kubectl get csr ${csrName} -o jsonpath='{.status.certificate}')
+                    if [[ ${serverCert} != '' ]]; then
+                        break
+                    fi
+                    sleep 1
+                done
+                if [[ ${serverCert} == '' ]]; then
+                    echo "ERROR: After approving csr ${csrName}, the signed certificate did not appear on the resource. Giving up after 10 attempts." >&2
+                    exit 1
+                fi
+    
+                echo ${serverCert} | openssl base64 -d -A -out ${tmpdir}/server-cert.pem
+    
+    
+                # create the secret with CA cert and server cert/key
+                kubectl create secret tls ${secret} \
+                        --key=${tmpdir}/server-key.pem \
+                        --cert=${tmpdir}/server-cert.pem \
+                        --dry-run -o yaml |
+                    kubectl -n ${namespace} apply -f -
+          restartPolicy: Never
+      backoffLimit: 4
+
+For the purposes of testing I didn't bake this into the container and just inlined the script in to the job definition. Its a bit messy but allowed me to test a lot of things out without the loop of creating a container and deploying it.
+
+So now we have a re-usable webhook that generates its own certificate and takes in properties to re-write the image name
+
+You can see the details here [https://github.com/lawrencegripper/MutatingAdmissionsController#helm-chart](https://github.com/lawrencegripper/MutatingAdmissionsController#helm-chart "https://github.com/lawrencegripper/MutatingAdmissionsController#helm-chart")
+
+To deploy this into you own cluster you would use the command below
+
+    helm install <url of release> --name registry-rewiter --set containerRegistryUrl=someurl.com,caBundle=<rootbundleasbase64>
+
+Releases can be found in the github releases.
