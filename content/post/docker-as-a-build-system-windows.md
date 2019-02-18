@@ -1,6 +1,6 @@
 +++
 categories = []
-date = "2018-06-14T20:09:50+01:00"
+date = "2019-02-18T09:01:50+01:00"
 keywords = ["build", "containers", "windows", "docker"]
 tags = ["docker", "windows", "containers", "build"]
 title = "Docker as a build system - with Windows containers"
