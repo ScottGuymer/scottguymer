@@ -1,12 +1,12 @@
 +++
-categories = ["category", "subcategory"]
+categories = []
 date = "2018-06-14T20:09:50+01:00"
-keywords = ["tech"]
+draft = true
+keywords = ["build", "containers", "windows", "docker"]
 tags = ["docker", "windows"]
 title = "Docker as a build system - with Windows containers"
-draft = "true"
-+++
 
++++
 > Whilst I am familiar with linux containers I havent had the chance to use windows containers much so this is part of a series where I explore the features and differences of windows container. These posts are written for someone who is fairly new to the docker experience.
 
 Docker doesnt just have to be used just to build, package and deploy applications. Its ability to provide an isolated environment that you have control over is great for build systems in general.
@@ -15,7 +15,7 @@ Because we can start with a base image and describe the steps to get our applica
 
 In this example im going to build a windows forms application that we would expect to use on a local desktop and not from running the image itself. In this case the applicaiton is trivial and is just a button that increments a counter each time you click it.
 
-You can see the end result… Its not pretty but it works!
+![image-20190215-100407.png](https://api.media.atlassian.com/file/bc3cf4f1-0baf-4444-a8b3-07f11f8d0b3b/artifact/image.jpg/binary?client=d869b65a-5c7c-4760-886d-1d80b45237f0&collection=contentId-747536502&max-age=3600&token=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkODY5YjY1YS01YzdjLTQ3NjAtODg2ZC0xZDgwYjQ1MjM3ZjAiLCJhY2Nlc3MiOnsidXJuOmZpbGVzdG9yZTpjb2xsZWN0aW9uOmNvbnRlbnRJZC03NDc1MzY1MDIiOlsicmVhZCJdfSwiZXhwIjoxNTUwNDgzMDM4LCJuYmYiOjE1NTA0ODAwOTh9.NRDUvwulOx4gSF-QXOm6yfbmDRFTA4cxrTZcFRKZuIY "clicker.exe")You can see the end result… Its not pretty but it works!
 
 To start with we have a simple solution to build this application locally on our machine and everything works as expected. When we run the application it starts and we can click the button like crazy.
 
