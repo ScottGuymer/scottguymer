@@ -14,7 +14,9 @@ Because we can start with a base image and describe the steps to get our applica
 
 In this example im going to build a windows forms application that we would expect to use on a local desktop and not from running the image itself. In this case the applicaiton is trivial and is just a button that increments a counter each time you click it.
 
-![image-20190215-100407.png](https://api.media.atlassian.com/file/bc3cf4f1-0baf-4444-a8b3-07f11f8d0b3b/artifact/image.jpg/binary?client=d869b65a-5c7c-4760-886d-1d80b45237f0&collection=contentId-747536502&max-age=3600&token=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkODY5YjY1YS01YzdjLTQ3NjAtODg2ZC0xZDgwYjQ1MjM3ZjAiLCJhY2Nlc3MiOnsidXJuOmZpbGVzdG9yZTpjb2xsZWN0aW9uOmNvbnRlbnRJZC03NDc1MzY1MDIiOlsicmVhZCJdfSwiZXhwIjoxNTUwNDgzMDM4LCJuYmYiOjE1NTA0ODAwOTh9.NRDUvwulOx4gSF-QXOm6yfbmDRFTA4cxrTZcFRKZuIY "clicker.exe")You can see the end result… Its not pretty but it works!
+![](/uploads/2019/02/18/ab7cec6b-3c54-4108-b70e-a95497931578.png "clicker.exe")
+
+You can see the end result… Its not pretty but it works!
 
 To start with we have a simple solution to build this application locally on our machine and everything works as expected. When we run the application it starts and we can click the button like crazy.
 
