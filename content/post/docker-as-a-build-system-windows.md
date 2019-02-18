@@ -3,7 +3,7 @@ categories = []
 date = "2018-06-14T20:09:50+01:00"
 draft = true
 keywords = ["build", "containers", "windows", "docker"]
-tags = ["docker", "windows"]
+tags = ["docker", "windows", "containers", "build"]
 title = "Docker as a build system - with Windows containers"
 
 +++

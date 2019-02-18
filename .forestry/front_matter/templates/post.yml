@@ -26,6 +26,7 @@ pages:
 - content/post/azurechallenge-leeds.md
 - content/post/my-software-engineering-reading-list.md
 - content/post/application-insight-in-a-cloud-native-world.md
+- content/post/docker-as-a-build-system-windows.md
 - content/post/aggregating-application-deployment-data.md
 - content/post/how-i-created-this-blog.md
 - content/post/making-linq-testable-in-isolation.md
