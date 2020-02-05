@@ -9,30 +9,35 @@ googleAnalytics = "UA-113812052-1"
 languageCode = "en-us"
 theme = "hugo-nuo"
 title = "Scott Guymer"
+
 [[menu.main]]
-identifier = "about"
-name = "About"
-url = "/about/"
-weight = 30
+  identifier = "about"
+  name = "About"
+  url = "/about/"
+  weight = 30
+
 [[menu.main]]
-identifier = "tags"
-name = "Tags"
-url = "/tags/"
-weight = 20
+  identifier = "tags"
+  name = "Tags"
+  url = "/tags/"
+  weight = 20
+
 [[menu.main]]
-identifier = "home"
-name = "Home"
-url = "/"
-weight = 10
+  identifier = "home"
+  name = "Home"
+  url = "/"
+  weight = 10
+
 [params]
-author = "Scott Guymer"
-avatar = "/images/main/scottguymer.jpg"
-description = "Blogging about software engineering, leading teams and life in general."
-email = "blog@scottguymer.co.uk"
-github = "scottguymer"
-googlesiteverification = "Rop88G3o4ZxIlfG_B3VHOKboh8LM_UpKZTB1d1CTbIE"
-linkedin = "scottguymer"
-paginate = 10
-seotitle = "Scott Guymer"
-subtitle = "~ Software Engineer ~"
-twitter = "mr_scottguymer"
+  author = "Scott Guymer"
+  avatar = "/images/scottguymer.jpg"
+  bg = "images/grey-prism.svg"
+  description = "Blogging about software engineering, leading teams and life in general."
+  email = "blog@scottguymer.co.uk"
+  github = "scottguymer"
+  googleSiteVerification = "Rop88G3o4ZxIlfG_B3VHOKboh8LM_UpKZTB1d1CTbIE"
+  linkedin = "scottguymer"
+  paginate = 10
+  seotitle = "Scott Guymer"
+  subtitle = "~ Software Engineer ~"
+  twitter = "mr_scottguymer"
