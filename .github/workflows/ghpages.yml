@@ -22,8 +22,8 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v2
-        with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          external_repository: ScottGuymer/scottguymer.github.io
-          publish_branch: master
-          publish_dir: ./public
+        env:
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          EXTERNAL_REPOSITORY: ScottGuymer/scottguymer.github.io
+          PUBLISH_BRANCH: master
+          PUBLISH_DIR: ./public
