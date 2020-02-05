@@ -1,8 +1,11 @@
-+++
-date = 2014-04-09T00:00:00Z
-title = "About Scott"
+---
+title: "About"
+date: 2014-04-09T00:00:00Z
+layout: "about"
+menu: "main"
+weight: 50
+---
 
-+++
 Hi! I'm Scott.
 
 I am a software engineer, father of 2 and husband. I work in Eindhoven for Philips Healthcare. My thoughts and opinions are all my own no one else's.

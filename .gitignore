@@ -27,6 +27,8 @@ jsconfig.json
 ### Hugo ###
 hugo.exe
 /public/
+main.scss_*
+
 ### macOS ###
 *.DS_Store
 .AppleDouble
