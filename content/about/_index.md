@@ -3,7 +3,7 @@ date = 2014-04-09T00:00:00Z
 title = "About Scott"
 
 +++
-Hi! I'm Scott.
+Hi! Im Scott.
 
 I am a software engineer, father of 2 and husband. I work in Eindhoven for Philips Healthcare. My thoughts and opinions are all my own no one else's.
 
