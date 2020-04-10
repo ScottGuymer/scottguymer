@@ -1,7 +1,6 @@
 +++
 categories = []
 date = 2020-04-09T22:00:00Z
-draft = true
 keywords = ["tech"]
 tags = ["envoy", "security", "authentication"]
 title = "Configuring JWT Authentication in Envoy Proxy"
