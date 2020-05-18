@@ -49,16 +49,17 @@ We do this because the BlackDuck scanner starts up some other services that are 
 We then mount the host `config.json` to provide credentials for private registries. We assume that the host has already logged into the private registry that is used for the images we want to scan.
 * `-v /var/run/docker.sock:/var/run/docker.sock` 
 Mount the docker.sock so that the container can start containers on the docker host it is running on.
-* `-v /tmp/blackduck/inspectorshared/:/tmp/blackduck/inspectorshared/` The Blackduck scanner uses mounted volumes to communicate with the other services that it starts. It's important that this volume is named the exact same inside the container and on the host.
+* `-v /tmp/blackduck/inspectorshared/:/tmp/blackduck/inspectorshared/` 
+The Blackduck scanner uses mounted volumes to communicate with the other services that it starts. It's important that this volume is named the exact same inside the container and on the host.
 * `my.private.registry/blackduckscanner:${BLACKDUCK_DETECT_VERSION}`
-  The BlackDuck scanner image that we want to run that will complete the scans
+The BlackDuck scanner image that we want to run that will complete the scans
 * `-detect.docker.passthrough.shared.dir.path.local=/tmp/blackduck/inspectorshared/`
 * `-detect.docker.passthrough.shared.dir.path.imageinspector=/tmp/blackduck/inspectorshared/`   
-  These two properties work in conjunction with the volume mount above so that the volume is shared between the BlackDuck scanner container and the scanning services that the scanner starts as part of its operation. It's important that they match the volume defined above.
+These two properties work in conjunction with the volume mount above so that the volume is shared between the BlackDuck scanner container and the scanning services that the scanner starts as part of its operation. It's important that they match the volume defined above.
 * `-detect.tools=DOCKER`   
-  Tells the BlackDuck scanner to use the DOCKER tool, this is the tool used for scanning Docker images.
+Tells the BlackDuck scanner to use the DOCKER tool, this is the tool used for scanning Docker images.
 * `-blackduck.offline.mode=true`   
-  For our purposes, we run the scanner in offline mode as we don't have direct access to the BlackDuck backend from our build environment.
+For our purposes, we run the scanner in offline mode as we don't have direct access to the BlackDuck backend from our build environment.
 
 The following are all BlackDuck properties that are used to identify the scan results created by the scanner.
 
