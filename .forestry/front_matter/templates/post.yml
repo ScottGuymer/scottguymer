@@ -7,11 +7,21 @@ fields:
   type: text
   hidden: false
   default: ''
-- name: date
-  label: Date
+- name: author
   type: text
-  hidden: false
-  default: 
+  config:
+    required: false
+  label: Author
+- name: date
+  type: datetime
+  description: ''
+  config:
+    required: false
+    date_format: DD/MM/YY
+    time_format: hh:mm
+    display_utc: false
+    export_format: YYYY-MM-DDThh:mm:ssA
+  label: Date
 - name: tags
   label: Tags
   type: tag_list
