@@ -1,6 +1,5 @@
 +++
-date = "08/10/2021"
-draft = true
+date = "2021-10-08T10:12:21Z"
 tags = ["Git", "SSH", "Windows"]
 title = "Setting up Git with SSH on Windows with PowerShell"
 
@@ -42,7 +41,6 @@ Now we tell the SSH client about the key we just created so it can use it to con
 Next, we need to tell GitHub about the key so let's copy the public key to our clipboard
 
     $ cat ~/.ssh/id_rsa.pub | clip
-    
 
 [Then you need to add the public key to your account using the instructions here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 
@@ -51,17 +49,15 @@ Next, we need to tell GitHub about the key so let's copy the public key to our c
 The last step is to tell your local git about your new SSH client and make sure it knows where to find it. You need to set an env var for this. We can do this temporarily like this
 
     $env:GIT_SSH = "C:\Windows\System32\OpenSSH\ssh.exe"
-    
 
 I would suggest adding this to your PowerShell profile or to the system environment variables using the windows dialogue.
 
 Now you should be all set to clone your repos over SSH
 
     git clone git@github.com:philips-internal/my-repo.git
-    
 
 When copying the link to your repo make sure you select the SSH tab in the clone dialogue.
 
-I have open sourced my own PowerShell Profile which sets up some of these things and makes sure that they will always work for me. [You can get some inspiration here.](https://github.com/ScottGuymer/powershell-profile/)
+![](/uploads/2021/10/08/git_clone.png)
 
 I have open sourced my own PowerShell Profile which sets up some of these things and makes sure that they will always work for me. [You can get some inspiration here.](https://github.com/ScottGuymer/powershell-profile/)
