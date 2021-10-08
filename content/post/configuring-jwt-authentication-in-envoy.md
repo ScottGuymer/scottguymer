@@ -1,5 +1,4 @@
 +++
-categories = []
 date = 2020-04-09T22:00:00Z
 keywords = ["tech"]
 tags = ["envoy", "security", "authentication"]
@@ -43,7 +42,7 @@ http_filters:
           issuer: my_issuer_name
           audiences:
             - audience_to_validate
-          forward: "true"
+          forward: 'true'
           remote_jwks:
             http_uri:
               uri: https://my.provider/jwks_url
@@ -55,7 +54,7 @@ http_filters:
         - match: { prefix: /api }
           requires:
             provider_name: oidc_provider
-      bypass_cors_preflight: "true"
+      bypass_cors_preflight: 'true'
 ```
 
 To explain this config

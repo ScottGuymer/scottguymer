@@ -1,9 +1,10 @@
 +++
+author = "Scott Guymer"
 date = "2021-10-08T10:12:21Z"
 tags = ["Git", "SSH", "Windows"]
 title = "Setting up Git with SSH on Windows with PowerShell"
-
 +++
+
 When you activate 2FA on your GitHub account using HTTPS becomes a little more difficult because you can't simply use your password anymore.
 
 The simple solution is to use a [PAT token](https://github.com/settings/tokens) as your password when prompted from the command line.

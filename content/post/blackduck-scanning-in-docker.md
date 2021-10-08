@@ -1,5 +1,4 @@
 +++
-categories = []
 date = 2020-05-18T08:45:50Z
 keywords = ["build", "containers", "security", "docker"]
 tags = ["build", "containers", "security", "docker"]

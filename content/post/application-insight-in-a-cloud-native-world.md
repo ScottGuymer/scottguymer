@@ -1,11 +1,11 @@
 +++
-categories = ["category", "subcategory"]
 date = "2018-06-13T15:44:05+01:00"
 keywords = ["tech"]
 tags = ["application insight", "monitoring", "kubernetes", "OpenTracing", "Prometheus", "logging", "tracing"]
 title = "Application Insight in a cloud native world"
 
 +++
+
 > APM products aren't part of your solution - they are part of your problem
 
 Don't get me wrong - they are for the most part great products and they do absolutely serve a purpose. But, as we move towards a much more distributed world with lots of smaller interconnected applications that are frequently updated and dynamically scaled, I'm not sure that these traditional products are the solution. Certainly not in the product format they are in currently where you pay per "host" or "agent".
@@ -18,9 +18,9 @@ I don't think its good enough to just install the agent and tick the box. We nee
 
 My current thinking is splitting "application insight" into 3 distinct but interrelated problems:
 
-* Log Aggregation
-* Instrumentation
-* Tracing
+- Log Aggregation
+- Instrumentation
+- Tracing
 
 We often think of these things collectively as "monitoring" but I would go further and say that monitoring is what we do with this information, how we aggregate it and use it to give us insight into what is going on. Part of this is ensuring that the system lets us know when it is encountering issues, preferably before they happen.
 
@@ -61,7 +61,7 @@ With OpenTracing we wrap parts of our program execution in "spans" that measure 
     	await $"https://httpbin.org/delay/{requestTime}".GetAsync();
     }
 
-Its important to understand that the implementations of OpenTracing compliant tracers such as [Jaeger](https://www.jaegertracing.io/) rely only on language features and install like an SDK. In this way they rely less on "plugging" into the runtime and extracting information without your application needing to be aware. This is a great result that makes using later language versions a lot easier and removes a huge upgrade issue when, say, moving from Java 7 to Java 8 and having to wait for a new agent from your APM vendor of choice. It also means that should you choose an unsupported language it is fairly trivial to create a working  implementation.
+Its important to understand that the implementations of OpenTracing compliant tracers such as [Jaeger](https://www.jaegertracing.io/) rely only on language features and install like an SDK. In this way they rely less on "plugging" into the runtime and extracting information without your application needing to be aware. This is a great result that makes using later language versions a lot easier and removes a huge upgrade issue when, say, moving from Java 7 to Java 8 and having to wait for a new agent from your APM vendor of choice. It also means that should you choose an unsupported language it is fairly trivial to create a working implementation.
 
 # The result
 

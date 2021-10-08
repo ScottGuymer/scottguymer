@@ -1,11 +1,11 @@
 +++
-categories = []
 date = "2019-02-18T09:01:50+01:00"
 keywords = ["build", "containers", "windows", "docker"]
 tags = ["docker", "windows", "containers", "build"]
 title = "Docker as a build system - with Windows containers"
 
 +++
+
 > Whilst I am familiar with linux containers I havent had the chance to use windows containers much so this is part of a series where I explore the features and differences of windows container. These posts are written for someone who is fairly new to the docker experience.
 
 Docker doesnt just have to be used just to build, package and deploy applications. Its ability to provide an isolated environment that you have control over is great for build systems in general.
@@ -14,7 +14,7 @@ Because we can start with a base image and describe the steps to get our applica
 
 In this example im going to build a windows forms application that we would expect to use on a local desktop and not from running the image itself. In this case the applicaiton is trivial and is just a button that increments a counter each time you click it.
 
-![](/uploads/2019/02/18/ab7cec6b-3c54-4108-b70e-a95497931578.png "clicker.exe")
+![](/uploads/2019/02/18/ab7cec6b-3c54-4108-b70e-a95497931578.png 'clicker.exe')
 
 You can see the end result… Its not pretty but it works!
 
@@ -24,7 +24,7 @@ Now we have to think about getting this built inside a docker image. To start wi
 
 The next task is to create a new dockerfile and add the steps needed to get the application build inside the container.
 
-``` docker
+```docker
 FROM compulim/msbuild
 
 WORKDIR c:\\code
@@ -38,7 +38,7 @@ This all looks pretty simple. We base our image on the msbuild one using the FRO
 
 We can get tht docker engine to build our docker image using the following command
 
-``` bash
+```bash
 docker build -t winforms .
 ```
 
@@ -46,14 +46,14 @@ The first time we run this it will have to pull the image down from DockerHub wh
 
 The result you get in the command line will look something like this
 
-``` bash
+```bash
 Successfully built 327e142a1ac3
 Successfully tagged winforms:latest
 ```
 
 This results in a new image being created and stored on your local machine. You can see this by running docker images which will give you a list of the images available on your machine. You will notice that there are at least 2. The image we based everything on and your brand new image that we just built.
 
-``` bash
+```bash
 REPOSITORY                             TAG                 IMAGE ID            CREATED             SIZE
 winforms                               latest              327e142a1ac3        3 minutes ago       13.9GB
 compulim/msbuild                       latest              5f5eb49a0f18        16 months ago       13.8GB
@@ -61,7 +61,7 @@ compulim/msbuild                       latest              5f5eb49a0f18        1
 
 At the moment the exe that we just built is stuck inside your image which doesnt do us much good. Here is where the neat trick happens. Using docker we can create a new container from our image without starting it and then reach into that container and copy files back to our local system. The commands look like this.
 
-``` bash
+```bash
 docker build -t winforms .
 
 # create a new instance of our winforms image without starting it
