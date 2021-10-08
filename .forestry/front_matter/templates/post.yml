@@ -2,6 +2,11 @@
 label: post
 hide_body: false
 fields:
+- name: author
+  type: text
+  config:
+    required: false
+  label: Author
 - name: title
   label: Title
   type: text
@@ -19,6 +24,16 @@ fields:
   default:
   - tag1
   - tag2
+- name: date2
+  type: datetime
+  description: ''
+  config:
+    required: false
+    date_format: DD/MM/YY
+    time_format: hh:mm
+    display_utc: false
+    export_format: YYYY-MM-DDThh:mm:ssA
+  label: Date2
 pages:
 - content/post/aggregating-application-deployment-data.md
 - content/post/application-insight-in-a-cloud-native-world.md
