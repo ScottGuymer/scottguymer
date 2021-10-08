@@ -30,3 +30,4 @@ pages:
 - content/post/kubernetes-mutating-webhook-configuration.md
 - content/post/making-linq-testable-in-isolation.md
 - content/post/my-software-engineering-reading-list.md
+- content/post/setting-up-git-with-ssh-on-windows-with-powershell.md
